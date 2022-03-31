@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 1043939613}
   - component: {fileID: 1043939612}
   m_Layer: 0
-  m_Name: s4m_ur4i_huge-assetpack-characters_6
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,7 +621,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 1381665185, guid: f5920bc72ca95e047aa4a52a3e17c960, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   jumpStrength: 10
-  cursorDist: 1
+  cursorDist: 2
   cursor: {fileID: 1043939611}
 --- !u!50 &1637308084
 Rigidbody2D:
