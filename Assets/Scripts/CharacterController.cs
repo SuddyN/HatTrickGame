@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterController: MonoBehaviour {
 
     public float movementSpeed = 10;
+    public float movementAccel = 0.1f;
     public float jumpStrength = 10;
     public float fireStrength = 10;
     public float cursorDist = 1;
@@ -17,12 +18,22 @@ public class CharacterController: MonoBehaviour {
     }
 
     void Update() {
-        // Use x-axis for movement
-        transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, 0) * Time.deltaTime * movementSpeed;
+        // Only allowed to jump or move from the ground
+        if (Mathf.Abs(_rigidbody2D.velocity.y) < 0.001f) {
 
-        // Handle jumping
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody2D.velocity.y) < 0.001f) {
-            _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
+            // Get the user inputted movement
+            float maxSpeed = Input.GetAxisRaw("Horizontal") * movementSpeed;
+            // Add it to the current velocity
+            Vector2 newVelocity = new Vector2(_rigidbody2D.velocity.x + (maxSpeed * movementAccel), _rigidbody2D.velocity.y);
+            // Only apply new velocity if it would be less than max speed
+            if (Mathf.Abs(newVelocity.x) < movementSpeed) {
+                _rigidbody2D.velocity = newVelocity;
+            }
+
+            // Handle jumping
+            if (Input.GetButtonDown("Jump")) {
+                _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
+            }
         }
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
