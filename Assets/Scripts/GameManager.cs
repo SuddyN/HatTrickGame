@@ -2,15 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour {
 
-    public static GameManager Instance;
+    private static GameManager _instance;
+    public static GameManager Instance {
+        get {
+            if (_instance == null) {
+                Debug.LogError("GameManager is null!");
+            }
+            return _instance;
+        }
+    }
+    public static UIManager UIManager;
     public GameState gameState;
     public static event Action<GameState> OnGameStateChanged;
 
     private void Awake() {
-        Instance = this;
+        _instance = this;
+        UIManager = gameObject.GetComponent<UIManager>();
     }
 
     void Start() {
@@ -18,7 +29,12 @@ public class GameManager: MonoBehaviour {
     }
 
     void Update() {
-
+        if (gameState.Equals(GameState.Death)) {
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Submit")) {
+                this.gameState = GameState.Game;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
     public void UpdateGameState(GameState newState) {
