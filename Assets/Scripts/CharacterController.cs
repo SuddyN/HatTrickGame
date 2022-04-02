@@ -61,6 +61,7 @@ public class CharacterController: MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("MaxAmmo")) {
             currAmmo = maxAmmo;
+            GameManager.UIManager.updateAmmoUI(currAmmo);
         }
         switch (collision.gameObject.tag) {
             case "Ground":
@@ -84,6 +85,7 @@ public class CharacterController: MonoBehaviour {
             case "Checkpoint":
                 break;
             case "Victory":
+                GameManager.Instance.LoadNextLevel();
                 break;
             default:
                 break;

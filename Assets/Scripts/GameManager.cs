@@ -51,6 +51,11 @@ public class GameManager: MonoBehaviour {
         }
         OnGameStateChanged?.Invoke(newState);
     }
+
+    public void LoadNextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
 
 public enum GameState {
