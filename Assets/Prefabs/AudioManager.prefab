@@ -45,8 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: lose
-    clip: {fileID: 8300000, guid: 972fdc9602cbd0748863b62a1dd1d5c6, type: 3}
+  - name: bgmusic
+    clip: {fileID: 8300000, guid: 6008a004bf78b0d409f3afdd06ddf668, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: walk
+    clip: {fileID: 8300000, guid: b7ca70da778368a469ad67efb811ad20, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: jump
+    clip: {fileID: 8300000, guid: 602a6f7a00b8ced4b944ca129cd1bfec, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -57,20 +69,14 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: jump
-    clip: {fileID: 8300000, guid: 602a6f7a00b8ced4b944ca129cd1bfec, type: 3}
+  - name: fire
+    clip: {fileID: 8300000, guid: 6dfa6f14a2074544eb41ad1ad5265eb8, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: walk
-    clip: {fileID: 8300000, guid: b7ca70da778368a469ad67efb811ad20, type: 3}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: fire
-    clip: {fileID: 8300000, guid: 6dfa6f14a2074544eb41ad1ad5265eb8, type: 3}
+  - name: collect
+    clip: {fileID: 8300000, guid: 13b2addd1c5f7fa40801dc81c08d6164, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -81,8 +87,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: collect
-    clip: {fileID: 8300000, guid: 13b2addd1c5f7fa40801dc81c08d6164, type: 3}
+  - name: lose
+    clip: {fileID: 8300000, guid: 972fdc9602cbd0748863b62a1dd1d5c6, type: 3}
     volume: 1
     pitch: 1
     loop: 0

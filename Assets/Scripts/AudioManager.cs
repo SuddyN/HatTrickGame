@@ -35,6 +35,10 @@ public class AudioManager: MonoBehaviour {
         }
     }
 
+    private void Start() {
+        Play("bgmusic");
+    }
+
     public void Play(string name) {
         Sound playSound = Array.Find(sounds, sound => sound.name.Equals(name));
         if (playSound == null) {
