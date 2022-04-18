@@ -132,9 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3556322d3320e3468d6c4300cb620de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 8
   movementAccel: 10
-  jumpStrength: 10
+  movementAccelInAir: 2
+  sprintMultiplier: 1.5
+  jumpStrength: 11
   fireStrength: 10
   cursorDist: 2
   maxAmmo: 3

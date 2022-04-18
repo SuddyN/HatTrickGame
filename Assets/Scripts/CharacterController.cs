@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CharacterController: MonoBehaviour {
 
-    public float movementSpeed = 10;
-    public float movementAccel = 0.1f;
-    public float jumpStrength = 10;
-    public float fireStrength = 10;
-    public float cursorDist = 1;
+    public float movementSpeed = 8f;
+    public float movementAccel = 10f;
+    public float movementAccelInAir = 10f;
+    public float sprintMultiplier = 2.0f;
+    public float jumpStrength = 10f;
+    public float fireStrength = 10f;
+    public float cursorDist = 1f;
     public int maxAmmo = 3;
     public int currAmmo;
     public bool usingController = false;
@@ -25,24 +27,33 @@ public class CharacterController: MonoBehaviour {
         if (!GameManager.Instance.gameState.Equals(GameState.Game)) {
             return;
         }
-        // Only allowed to jump or move from the ground
-        if (Mathf.Abs(_rigidbody2D.velocity.y) < 0.001f) {
 
-            // Get the user inputted movement
-            float maxSpeed = Input.GetAxisRaw("Horizontal") * movementSpeed;
-            // Add it to the current velocity
-            Vector2 newVelocity = new Vector2(_rigidbody2D.velocity.x + (maxSpeed * movementAccel * Time.deltaTime), _rigidbody2D.velocity.y);
-            // Only apply new velocity if it would be less than max speed
-            if (Mathf.Abs(newVelocity.x) < movementSpeed) {
-                _rigidbody2D.velocity = newVelocity;
-            }
-
-            // Handle jumping
-            if (Input.GetButtonDown("Jump")) {
-                _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
-            }
+        // Change movement speed and acceleration based on grounded state
+        float modifiedSpeed = movementSpeed;
+        float modifiedAccel = movementAccel;
+        if (Mathf.Abs(_rigidbody2D.velocity.y) > 0.001f) {
+            modifiedAccel = movementAccelInAir;
+        }
+        if (Input.GetButton("Fire3")) {
+            modifiedSpeed *= sprintMultiplier;
         }
 
+        // Get the user inputted movement
+        float maxSpeed = Input.GetAxisRaw("Horizontal") * modifiedSpeed;
+
+        // Add it to the current velocity
+        Vector2 newVelocity = new Vector2(_rigidbody2D.velocity.x + (maxSpeed * modifiedAccel * Time.deltaTime), _rigidbody2D.velocity.y);
+        // Only apply new velocity if it would be less than max speed
+        if (Mathf.Abs(newVelocity.x) < modifiedSpeed) {
+            _rigidbody2D.velocity = newVelocity;
+        }
+
+        // Handle jumping
+        if (Input.GetButtonDown("Jump")) {
+            _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
+        }
+
+        // Logic for aim and shoot
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         Vector2 aim = new Vector2(mousePos.x, mousePos.y).normalized;
         if (usingController) {

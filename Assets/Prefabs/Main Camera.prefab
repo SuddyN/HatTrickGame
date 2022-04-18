@@ -132,5 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 0}
-  followOffset: {x: 15, y: 5}
-  speed: 6
+  speed: 1
+  followBoxSize: {x: 15, y: 9}
+  followBoxOffset: {x: 0, y: -4}
