@@ -10,7 +10,7 @@ public class CharacterController: MonoBehaviour {
     public float sprintMultiplier = 2.0f;
     public float jumpStrength = 10f;
     public float fireStrength = 10f;
-    public float cursorDist = 1f;
+    public float cursorDist = 2.0f;
     public int maxAmmo = 3;
     public int currAmmo;
     public bool usingController = false;
@@ -56,7 +56,7 @@ public class CharacterController: MonoBehaviour {
 
         // Logic for aim and shoot
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Vector2 aim = new Vector2(mousePos.x, mousePos.y).normalized;
+        Vector2 aim = new Vector2(mousePos.x, mousePos.y);
         if (usingController) {
             aim = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         }
@@ -122,7 +122,7 @@ public class CharacterController: MonoBehaviour {
         if (aimVector.magnitude < 0.001f) {
             return;
         }
-        _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector * fireStrength * -1.0f);
+        _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector.normalized * fireStrength * -1.0f);
     }
 
     private void TouchGround() {
