@@ -40593,5 +40593,49 @@ PrefabInstance:
       propertyPath: followObject
       value: 
       objectReference: {fileID: 523399161}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: cameraOffset.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: cameraOffset.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followBoxSize.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followBoxSize.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followBoxOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followBoxOffset.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followOffsetAsym.w
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followOffsetAsym.x
+      value: 15.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followOffsetAsym.y
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: followOffsetAsym.z
+      value: 15.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532067933251289911, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: useAsymmetricalOffset
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
