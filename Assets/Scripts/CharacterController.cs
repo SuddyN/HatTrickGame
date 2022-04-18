@@ -52,6 +52,7 @@ public class CharacterController: MonoBehaviour {
         // Handle jumping
         if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody2D.velocity.y) < 0.001f) {
             _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
+            AudioManager.Instance.Play("jump");
         }
 
         // Logic for aim and shoot
@@ -85,19 +86,23 @@ public class CharacterController: MonoBehaviour {
         switch (collider.gameObject.tag) {
             case "Ground":
                 TouchGround();
+                AudioManager.Instance.Play("land");
                 break;
             case "MaxAmmo":
                 MaxAmmo();
                 collider.GetComponent<SpriteRenderer>().enabled = false;
                 collider.GetComponent<Collider2D>().enabled = false;
+                AudioManager.Instance.Play("collect");
                 break;
             case "AddAmmo":
                 AddAmmo();
                 collider.GetComponent<SpriteRenderer>().enabled = false;
                 collider.GetComponent<Collider2D>().enabled = false;
+                AudioManager.Instance.Play("collect");
                 break;
             case "Kill":
                 Death();
+                AudioManager.Instance.Play("lose");
                 break;
             case "Enemy":
                 TakeDamage();
@@ -106,6 +111,7 @@ public class CharacterController: MonoBehaviour {
                 break;
             case "Victory":
                 GameManager.Instance.LoadNextLevel();
+                AudioManager.Instance.Play("win");
                 break;
             default:
                 break;
@@ -123,6 +129,7 @@ public class CharacterController: MonoBehaviour {
             return;
         }
         _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector.normalized * fireStrength * -1.0f);
+        AudioManager.Instance.Play("fire");
     }
 
     private void TouchGround() {
