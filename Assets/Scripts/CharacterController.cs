@@ -16,6 +16,7 @@ public class CharacterController: MonoBehaviour {
     public bool usingController = false;
     public GameObject cursor;
     private Rigidbody2D _rigidbody2D;
+    private float lastSpeed = 0;
 
     void Start() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -43,13 +44,13 @@ public class CharacterController: MonoBehaviour {
 
         // Add it to the current velocity
         Vector2 newVelocity = new Vector2(_rigidbody2D.velocity.x + (maxSpeed * modifiedAccel * Time.deltaTime), _rigidbody2D.velocity.y);
-        // Only apply new velocity if it would be less than max speed
-        if (Mathf.Abs(newVelocity.x) < modifiedSpeed) {
+        // Only apply new velocity if it would be less than max speed or less than last speed
+        if (Mathf.Abs(newVelocity.x) < modifiedSpeed || Mathf.Abs(newVelocity.x) < Mathf.Abs(lastSpeed)) {
             _rigidbody2D.velocity = newVelocity;
         }
 
         // Handle jumping
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(_rigidbody2D.velocity.y) < 0.001f) {
             _rigidbody2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
         }
 
@@ -68,23 +69,32 @@ public class CharacterController: MonoBehaviour {
         if (Input.GetButtonDown("Fire1")) {
             Fire(cursorPos);
         }
+
+        lastSpeed = _rigidbody2D.velocity.x;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("MaxAmmo")) {
-            currAmmo = maxAmmo;
-            GameManager.UIManager.updateAmmoUI(currAmmo);
-        }
-        switch (collision.gameObject.tag) {
+        HandlePlayerCollide(collision.collider);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        HandlePlayerCollide(collider);
+    }
+
+    private void HandlePlayerCollide(Collider2D collider) {
+        switch (collider.gameObject.tag) {
             case "Ground":
                 TouchGround();
                 break;
             case "MaxAmmo":
                 MaxAmmo();
+                collider.GetComponent<SpriteRenderer>().enabled = false;
+                collider.GetComponent<Collider2D>().enabled = false;
                 break;
             case "AddAmmo":
                 AddAmmo();
-                collision.gameObject.SetActive(false);
+                collider.GetComponent<SpriteRenderer>().enabled = false;
+                collider.GetComponent<Collider2D>().enabled = false;
                 break;
             case "Kill":
                 Death();
@@ -100,7 +110,6 @@ public class CharacterController: MonoBehaviour {
             default:
                 break;
         }
-
     }
 
     private void Fire(Vector3 cursorPos) {
@@ -117,8 +126,15 @@ public class CharacterController: MonoBehaviour {
     }
 
     private void TouchGround() {
-        currAmmo = maxAmmo;
-        GameManager.UIManager.updateAmmoUI(currAmmo);
+        MaxAmmo();
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("AddAmmo")) {
+            g.GetComponent<SpriteRenderer>().enabled = true;
+            g.GetComponent<Collider2D>().enabled = true;
+        }
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("MaxAmmo")) {
+            g.GetComponent<SpriteRenderer>().enabled = true;
+            g.GetComponent<Collider2D>().enabled = true;
+        }
     }
 
     private void MaxAmmo() {
