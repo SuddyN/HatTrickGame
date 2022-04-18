@@ -46,20 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: bgmusic
-    clip: {fileID: 8300000, guid: 6008a004bf78b0d409f3afdd06ddf668, type: 3}
-    volume: 0.25
+    clip: {fileID: 8300000, guid: 4d502a5f50f785f48a8a8a55d57ac54b, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: walk
     clip: {fileID: 8300000, guid: b7ca70da778368a469ad67efb811ad20, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: jump
     clip: {fileID: 8300000, guid: 602a6f7a00b8ced4b944ca129cd1bfec, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
