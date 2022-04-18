@@ -66,22 +66,20 @@ public class CharacterController: MonoBehaviour {
         }
         switch (collision.gameObject.tag) {
             case "Ground":
-                currAmmo = maxAmmo;
-                GameManager.UIManager.updateAmmoUI(currAmmo);
+                TouchGround();
                 break;
             case "MaxAmmo":
-                currAmmo = maxAmmo;
-                GameManager.UIManager.updateAmmoUI(currAmmo);
+                MaxAmmo();
                 break;
             case "AddAmmo":
-                currAmmo++;
-                currAmmo = (currAmmo < 0) ? 0 : currAmmo;
-                currAmmo = (currAmmo > maxAmmo) ? maxAmmo : currAmmo;
-                GameManager.UIManager.updateAmmoUI(currAmmo);
+                AddAmmo();
                 collision.gameObject.SetActive(false);
                 break;
             case "Kill":
                 Death();
+                break;
+            case "Enemy":
+                TakeDamage();
                 break;
             case "Checkpoint":
                 break;
@@ -107,8 +105,29 @@ public class CharacterController: MonoBehaviour {
         _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector * fireStrength * -1.0f);
     }
 
+    private void TouchGround() {
+        currAmmo = maxAmmo;
+        GameManager.UIManager.updateAmmoUI(currAmmo);
+    }
+
+    private void MaxAmmo() {
+        currAmmo = maxAmmo;
+        GameManager.UIManager.updateAmmoUI(currAmmo);
+    }
+
+    private void AddAmmo() {
+        currAmmo++;
+        currAmmo = (currAmmo < 0) ? 0 : currAmmo;
+        currAmmo = (currAmmo > maxAmmo) ? maxAmmo : currAmmo;
+        GameManager.UIManager.updateAmmoUI(currAmmo);
+    }
+
     private void Death() {
         gameObject.SetActive(false);
         GameManager.Instance.UpdateGameState(GameState.Death);
+    }
+
+    private void TakeDamage() {
+        GameManager.Instance.health -= 36.7f;
     }
 }
