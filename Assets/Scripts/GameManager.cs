@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour {
 
+    public float health = 100f;
+    public float maxHealth = 100f;
+
     private static GameManager _instance;
     public static GameManager Instance {
         get {
@@ -25,13 +28,17 @@ public class GameManager: MonoBehaviour {
     }
 
     void Start() {
-
+        health = maxHealth;
     }
 
     void Update() {
+        if (health <= 0) {
+            gameState = GameState.Death;
+        }
         if (gameState.Equals(GameState.Death)) {
             if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Submit")) {
                 this.gameState = GameState.Game;
+                health = maxHealth;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
