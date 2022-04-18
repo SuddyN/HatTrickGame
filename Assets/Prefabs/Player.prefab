@@ -139,7 +139,7 @@ MonoBehaviour:
   jumpStrength: 11
   fireStrength: 10
   cursorDist: 3
-  maxAmmo: 3
+  maxAmmo: 2
   currAmmo: 0
   usingController: 0
   cursor: {fileID: 3016478444459959687}
