@@ -13,7 +13,7 @@ public class CameraFollow: MonoBehaviour {
         threshold = calculateThreshold();
     }
 
-    void FixedUpdate() {
+    void Update() {
         // Get the x,y pos of the object to follow and offset it by the camera offset
         Vector2 follow = followObject.transform.position;
         follow -= followBoxOffset;
@@ -33,7 +33,8 @@ public class CameraFollow: MonoBehaviour {
 
         // Move the camera towards the object
         Rigidbody2D rb = followObject.GetComponent<Rigidbody2D>();
-        float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;
+        //float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;
+        float moveSpeed = speed * Mathf.Abs(Vector2.Distance(transform.position, followObject.transform.position));
         transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
 

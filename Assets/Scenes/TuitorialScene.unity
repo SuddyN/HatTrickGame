@@ -426,6 +426,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5532067933251289904, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5532067933251289907, guid: e57a453cc0d593c438e8ca185dd3ab2a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -38462,6 +38466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 274138710666831725, guid: 4c32c79ddcf5c374d83d6e8db82f8234, type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d502a5f50f785f48a8a8a55d57ac54b, type: 3}
     - target: {fileID: 274138710666831725, guid: 4c32c79ddcf5c374d83d6e8db82f8234, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.1

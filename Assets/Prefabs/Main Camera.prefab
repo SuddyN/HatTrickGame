@@ -59,7 +59,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 20
   field of view: 34
   orthographic: 1
   orthographic size: 10
@@ -132,6 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 0}
-  speed: 1
+  speed: 3
   followBoxSize: {x: 15, y: 9}
   followBoxOffset: {x: 0, y: -4}
