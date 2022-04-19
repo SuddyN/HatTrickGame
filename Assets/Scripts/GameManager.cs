@@ -8,6 +8,7 @@ public class GameManager: MonoBehaviour {
 
     public float health = 100f;
     public float maxHealth = 100f;
+    public List<BulletScript> bullets;
 
     private static GameManager _instance;
     public static GameManager Instance {

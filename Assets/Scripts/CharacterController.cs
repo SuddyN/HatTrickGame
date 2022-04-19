@@ -10,6 +10,7 @@ public class CharacterController: MonoBehaviour {
     public float sprintMultiplier = 2.0f;
     public float jumpStrength = 10f;
     public float fireStrength = 10f;
+    public float bulletSpeed = 10f;
     public float cursorDist = 2.0f;
     public int maxAmmo = 3;
     public int currAmmo;
@@ -129,6 +130,13 @@ public class CharacterController: MonoBehaviour {
             return;
         }
         _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector.normalized * fireStrength * -1.0f);
+
+        List<BulletScript> bulletList = GameManager.Instance.bullets;
+        GameObject bullet = Instantiate(bulletList[Random.Range(0, bulletList.Count)].gameObject);
+        bullet.transform.position = transform.position;
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+        bulletRB.velocity = bulletRB.velocity + (aimVector.normalized * bulletSpeed);
+
         AudioManager.Instance.Play("fire");
     }
 

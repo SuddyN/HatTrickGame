@@ -194,6 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8dc46881cb9ae45b479fc4a86a1a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  bullets:
+  - {fileID: 2658624310714486205, guid: 53d1baac13f95ed4686cde1ddfaafba5, type: 3}
+  - {fileID: 2658624310714486205, guid: 8e4cb7649dfe94f42be8692799d950c1, type: 3}
   gameState: 1
 --- !u!114 &1639443300393732367
 MonoBehaviour:
