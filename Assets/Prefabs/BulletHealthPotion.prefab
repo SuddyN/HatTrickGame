@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 360
+  collisionTimer: 0
 --- !u!50 &3587234188656554620
 Rigidbody2D:
   serializedVersion: 4
