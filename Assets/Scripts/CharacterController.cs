@@ -93,12 +93,16 @@ public class CharacterController: MonoBehaviour {
                 MaxAmmo();
                 collider.GetComponent<SpriteRenderer>().enabled = false;
                 collider.GetComponent<Collider2D>().enabled = false;
+                if (collider.GetComponent<BulletScript>() != null)
+                    Destroy(collider.gameObject);
                 AudioManager.Instance.Play("collect");
                 break;
             case "AddAmmo":
                 AddAmmo();
                 collider.GetComponent<SpriteRenderer>().enabled = false;
                 collider.GetComponent<Collider2D>().enabled = false;
+                if (collider.GetComponent<BulletScript>() != null)
+                    Destroy(collider.gameObject);
                 AudioManager.Instance.Play("collect");
                 break;
             case "Kill":
