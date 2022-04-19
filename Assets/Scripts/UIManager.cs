@@ -18,7 +18,11 @@ public class UIManager: MonoBehaviour {
 
     }
 
-    public void updateAmmoUI(int ammo) {
-        _ammoText.text = "Ammo: " + ammo;
+    public void UpdateAmmoUI() {
+        Queue<BulletScript> bulletQueue = GameManager.Instance.bulletQueue;
+        _ammoText.text = "Ammo Queue:";
+        foreach (BulletScript b in bulletQueue.ToArray()) {
+            _ammoText.text += "\n" + b.displayName;
+        }
     }
 }

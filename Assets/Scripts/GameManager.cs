@@ -9,6 +9,7 @@ public class GameManager: MonoBehaviour {
     public float health = 100f;
     public float maxHealth = 100f;
     public List<BulletScript> bullets;
+    public Queue<BulletScript> bulletQueue;
 
     private static GameManager _instance;
     public static GameManager Instance {
@@ -34,6 +35,7 @@ public class GameManager: MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         UIManager = gameObject.GetComponent<UIManager>();
+        bulletQueue = new Queue<BulletScript>();
     }
 
     void Start() {

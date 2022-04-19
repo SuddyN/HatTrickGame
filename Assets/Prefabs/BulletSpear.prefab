@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0864d67902ce164491c0a592be548d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Spear
   rotationSpeed: 360
   collisionTimer: 0
 --- !u!50 &5217724325356890314

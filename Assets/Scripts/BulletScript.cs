@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript: MonoBehaviour {
 
+    public string displayName = "";
     public float rotationSpeed = 360f;
     public float collisionTimer = 0.5f;
     private float timer;

@@ -22,7 +22,6 @@ public class CharacterController: MonoBehaviour {
     void Start() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         currAmmo = maxAmmo;
-        GameManager.UIManager.updateAmmoUI(currAmmo);
     }
 
     void Update() {
@@ -128,18 +127,19 @@ public class CharacterController: MonoBehaviour {
             return;
         }
         currAmmo--;
-        GameManager.UIManager.updateAmmoUI(currAmmo);
         Vector2 aimVector = new Vector3(cursorPos.x - transform.position.x, cursorPos.y - transform.position.y);
         if (aimVector.magnitude < 0.001f) {
             return;
         }
         _rigidbody2D.velocity = _rigidbody2D.velocity + (aimVector.normalized * fireStrength * -1.0f);
 
-        List<BulletScript> bulletList = GameManager.Instance.bullets;
-        GameObject bullet = Instantiate(bulletList[Random.Range(0, bulletList.Count)].gameObject);
+        Queue<BulletScript> bulletQueue = GameManager.Instance.bulletQueue;
+        GameObject bullet = Instantiate(bulletQueue.Dequeue().gameObject);
         bullet.transform.position = transform.position;
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
         bulletRB.velocity = bulletRB.velocity + (aimVector.normalized * bulletSpeed);
+
+        UpdateAmmo();
 
         AudioManager.Instance.Play("fire");
     }
@@ -158,14 +158,14 @@ public class CharacterController: MonoBehaviour {
 
     private void MaxAmmo() {
         currAmmo = maxAmmo;
-        GameManager.UIManager.updateAmmoUI(currAmmo);
+        UpdateAmmo();
     }
 
     private void AddAmmo() {
         currAmmo++;
         currAmmo = (currAmmo < 0) ? 0 : currAmmo;
         currAmmo = (currAmmo > maxAmmo) ? maxAmmo : currAmmo;
-        GameManager.UIManager.updateAmmoUI(currAmmo);
+        UpdateAmmo();
     }
 
     private void Death() {
@@ -175,5 +175,14 @@ public class CharacterController: MonoBehaviour {
 
     private void TakeDamage() {
         GameManager.Instance.health -= 36.7f;
+    }
+
+    private void UpdateAmmo() {
+        List<BulletScript> bulletList = GameManager.Instance.bullets;
+        Queue<BulletScript> bulletQueue = GameManager.Instance.bulletQueue;
+        while (bulletQueue.Count < currAmmo) {
+            bulletQueue.Enqueue(bulletList[Random.Range(0, bulletList.Count)]);
+        }
+        GameManager.UIManager.UpdateAmmoUI();
     }
 }

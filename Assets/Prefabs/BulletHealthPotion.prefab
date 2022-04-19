@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0864d67902ce164491c0a592be548d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Healing Potion
   rotationSpeed: 360
   collisionTimer: 0
 --- !u!50 &3587234188656554620
