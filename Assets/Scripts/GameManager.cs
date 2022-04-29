@@ -55,11 +55,9 @@ public class GameManager: MonoBehaviour {
             health = maxHealth;
             UIManager.UpdateHealthUI();
         }
-        if (gameState.Equals(GameState.Death)) {
-            if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Submit")) {
-                UpdateGameState(GameState.Game);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            UpdateGameState(GameState.Game);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

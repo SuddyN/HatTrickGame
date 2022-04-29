@@ -596,8 +596,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Thanks for playing! This is the end of the game so far. \nThere is much
-    more we want to implement!"
+  m_Text: "Alice made it back home from the deep underground!\n\nThanks for playing!
+    This is the end of the game so far. \nThere is much more we want to implement!"
 --- !u!222 &2097298208
 CanvasRenderer:
   m_ObjectHideFlags: 0
