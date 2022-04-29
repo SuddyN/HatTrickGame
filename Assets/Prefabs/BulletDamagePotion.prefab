@@ -118,6 +118,9 @@ MonoBehaviour:
   displayName: Poison Potion
   rotationSpeed: 360
   collisionTimer: 0
+  splashRadius: 5
+  power: 34
+  bulletType: 3
 --- !u!50 &5217724325356890314
 Rigidbody2D:
   serializedVersion: 4

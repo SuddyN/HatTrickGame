@@ -118,6 +118,9 @@ MonoBehaviour:
   displayName: Add Ammo
   rotationSpeed: 360
   collisionTimer: 0.25
+  splashRadius: 1
+  power: 34
+  bulletType: 0
 --- !u!50 &7471461225993424955
 Rigidbody2D:
   serializedVersion: 4

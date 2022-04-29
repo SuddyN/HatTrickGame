@@ -117,7 +117,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Spear
   rotationSpeed: 360
-  collisionTimer: 0
+  collisionTimer: 0.25
+  splashRadius: 1
+  power: 51
+  bulletType: 2
 --- !u!50 &5217724325356890314
 Rigidbody2D:
   serializedVersion: 4

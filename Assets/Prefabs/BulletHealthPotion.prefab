@@ -118,6 +118,9 @@ MonoBehaviour:
   displayName: Healing Potion
   rotationSpeed: 360
   collisionTimer: 0
+  splashRadius: 5
+  power: 51
+  bulletType: 4
 --- !u!50 &3587234188656554620
 Rigidbody2D:
   serializedVersion: 4

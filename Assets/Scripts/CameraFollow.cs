@@ -11,6 +11,7 @@ public class CameraFollow: MonoBehaviour {
 
     void Start() {
         threshold = calculateThreshold();
+        GameManager.Instance.camera = gameObject;
     }
 
     void Update() {

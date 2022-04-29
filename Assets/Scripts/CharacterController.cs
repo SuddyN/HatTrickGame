@@ -22,6 +22,7 @@ public class CharacterController: MonoBehaviour {
     void Start() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         currAmmo = maxAmmo;
+        GameManager.Instance.player = gameObject;
     }
 
     void Update() {
@@ -105,8 +106,7 @@ public class CharacterController: MonoBehaviour {
                 AudioManager.Instance.Play("collect");
                 break;
             case "Kill":
-                Death();
-                AudioManager.Instance.Play("lose");
+                GameManager.Instance.UpdateGameState(GameState.Death);
                 break;
             case "Enemy":
                 TakeDamage();
@@ -166,11 +166,6 @@ public class CharacterController: MonoBehaviour {
         currAmmo = (currAmmo < 0) ? 0 : currAmmo;
         currAmmo = (currAmmo > maxAmmo) ? maxAmmo : currAmmo;
         UpdateAmmo();
-    }
-
-    private void Death() {
-        gameObject.SetActive(false);
-        GameManager.Instance.UpdateGameState(GameState.Death);
     }
 
     private void TakeDamage() {

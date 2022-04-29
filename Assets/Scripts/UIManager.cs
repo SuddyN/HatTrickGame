@@ -7,6 +7,8 @@ public class UIManager: MonoBehaviour {
 
     [SerializeField]
     private Text _ammoText;
+    [SerializeField]
+    private RectTransform _healthBar;
 
     // Start is called before the first frame update
     void Start() {
@@ -24,5 +26,13 @@ public class UIManager: MonoBehaviour {
         foreach (BulletScript b in bulletQueue.ToArray()) {
             _ammoText.text += "\n" + b.displayName;
         }
+    }
+
+    public void UpdateHealthUI() {
+        float maxHealth = GameManager.Instance.maxHealth;
+        float health = GameManager.Instance.health;
+        _healthBar.rect.Set(-1*(maxHealth/2) - 10, _healthBar.rect.y, maxHealth + 5, _healthBar.rect.height);
+        RectTransform _health = _healthBar.gameObject.transform.GetChild(0).GetComponent<RectTransform>();
+        _health.offsetMin = new Vector2(maxHealth - health + 2, _health.offsetMin.y);
     }
 }

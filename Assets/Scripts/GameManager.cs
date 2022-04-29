@@ -23,6 +23,8 @@ public class GameManager: MonoBehaviour {
     public static UIManager UIManager;
     public GameState gameState;
     public static event Action<GameState> OnGameStateChanged;
+    public GameObject player;
+    public GameObject camera;
 
     private void Awake() {
 
@@ -36,6 +38,8 @@ public class GameManager: MonoBehaviour {
 
         UIManager = gameObject.GetComponent<UIManager>();
         bulletQueue = new Queue<BulletScript>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Start() {
@@ -43,13 +47,16 @@ public class GameManager: MonoBehaviour {
     }
 
     void Update() {
-        if (health <= 0) {
-            gameState = GameState.Death;
+        if (health <= 0 && this.gameState != GameState.Death) {
+            UpdateGameState(GameState.Death);
+        }
+        if (health >= maxHealth) {
+            health = maxHealth;
+            UIManager.UpdateHealthUI();
         }
         if (gameState.Equals(GameState.Death)) {
             if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Submit")) {
-                this.gameState = GameState.Game;
-                health = maxHealth;
+                UpdateGameState(GameState.Game);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -61,8 +68,15 @@ public class GameManager: MonoBehaviour {
             case GameState.Menu:
                 break;
             case GameState.Game:
+                player.SetActive(true);
+                health = maxHealth;
+                UIManager.UpdateHealthUI();
                 break;
             case GameState.Death:
+                AudioManager.Instance.Play("lose");
+                player.SetActive(false);
+                health = 0;
+                UIManager.UpdateHealthUI();
                 break;
             default:
                 break;

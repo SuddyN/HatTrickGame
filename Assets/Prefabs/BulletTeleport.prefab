@@ -118,6 +118,9 @@ MonoBehaviour:
   displayName: Teleport Orb
   rotationSpeed: 360
   collisionTimer: 0
+  splashRadius: 1
+  power: 34
+  bulletType: 1
 --- !u!50 &5217724325356890314
 Rigidbody2D:
   serializedVersion: 4
