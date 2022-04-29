@@ -9,6 +9,8 @@ public class UIManager: MonoBehaviour {
     private Text _ammoText;
     [SerializeField]
     private RectTransform _healthBar;
+    [SerializeField]
+    public Text _deathText;
 
     // Start is called before the first frame update
     void Start() {

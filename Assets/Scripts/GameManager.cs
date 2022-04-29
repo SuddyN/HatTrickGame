@@ -24,7 +24,7 @@ public class GameManager: MonoBehaviour {
     public GameState gameState;
     public static event Action<GameState> OnGameStateChanged;
     public GameObject player;
-    public GameObject camera;
+    public GameObject mainCamera;
 
     private void Awake() {
 
@@ -39,11 +39,12 @@ public class GameManager: MonoBehaviour {
         UIManager = gameObject.GetComponent<UIManager>();
         bulletQueue = new Queue<BulletScript>();
         player = GameObject.FindGameObjectWithTag("Player");
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Start() {
         health = maxHealth;
+        UIManager._deathText.enabled = false;
     }
 
     void Update() {
@@ -70,12 +71,14 @@ public class GameManager: MonoBehaviour {
             case GameState.Game:
                 player.SetActive(true);
                 health = maxHealth;
+                UIManager._deathText.enabled = false;
                 UIManager.UpdateHealthUI();
                 break;
             case GameState.Death:
                 AudioManager.Instance.Play("lose");
                 player.SetActive(false);
                 health = 0;
+                UIManager._deathText.enabled = true;
                 UIManager.UpdateHealthUI();
                 break;
             default:
